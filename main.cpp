@@ -3,9 +3,17 @@
 
 // Implement your solutions here.
 
+template<typename T>
+constexpr T max( T a , T b ) {
+  return b < a ? a : b;
+}
+template<typename T , typename U>
+constexpr auto max( T a , U b) -> decltype(b < a ? a : b )
+{
+    return b < a ? a : b;
+}
 
-
-auto main() -> int {
+int main( void )  {
   using namespace std::string_literals;
 
   // Just uncomment the section that you are currently working on.
@@ -13,13 +21,13 @@ auto main() -> int {
 
   // Ex. 1.1
   // Write max function that compares different types.
-//  static_assert(::max(4, 5) == 5, "");
-//  static_assert(::max(3, 4.7) == 4.7, "");
-//  static_assert(::max(3.f, 42.7) == 42.7, "");
+  static_assert(::max(4, 5) == 5, "Not working for types of the same type");
+  static_assert(::max(3, 4.7) == 4.7, "Not working for int and doubles ");
+  static_assert(::max(3.f, 42.7) == 42.7, "The third one isn't working");
 
   // Ex. 1.2
   // Write max function that compares multiple values of different types.
-//  static_assert(::max(4, 5, 6, 7.6) == 7.6, "");
+//  static_assert(::max(4, 5, 6, 7.6) == 7.6, "variadic templated max isn't working");
 //  static_assert(::max(4, 5, 6.f, 700.6, 234.34) == 700.6, "");
 
   // Ex. 1.3
