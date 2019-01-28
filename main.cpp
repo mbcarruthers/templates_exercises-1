@@ -4,12 +4,12 @@
 // Implement your solutions here.
 
 template<typename T>
-constexpr T max( T a , T b ) {
+ inline constexpr T max( T a , T b ) {
   return b < a ? a : b;
 }
 
 template<typename T , typename U>
-constexpr auto max( T a , U b) -> decltype(b < a ? a : b )
+ constexpr auto max( T a , U b) -> decltype(b < a ? a : b )
 {
     return b < a ? a : b;
 }
@@ -23,11 +23,23 @@ template<typename T , typename U , typename... Types>
  constexpr auto max( T t , U u , Types... types ) -> decltype( max(max(t , u) , types...) ) {
     return max( max(t , u) , types... );
 }
+
 template<typename T , typename U , typename V , typename... Types>
-constexpr auto max( T t , U u , V v , Types... types ) -> decltype( max( max(t , u , v) , types...))
+ constexpr auto max( T t , U u , V v , Types... types ) -> decltype( max(max(t , u , v) , types...) )
 {
     return max( max(t , u , v) , types...);
 }
+
+auto max( std::string const& a , std::string const& b ) {
+        return b.size() < a.size() ? a : b;
+}
+
+template<typename T , typename U , typename... Types>
+std::string max( T t , U u , Types... types )  {
+    return max( max( t , u) , types...);
+}
+
+
 int main( void )  {
   using namespace std::string_literals;
 
@@ -47,9 +59,9 @@ int main( void )  {
 
   // Ex. 1.3
   // Add overload which returns the longest string.
-//  assert(::max("aaaa"s, "bb"s) == "aaaa"s);
-//  assert(::max("aaaa"s, "bb"s, "veryLongString"s) == "veryLongString"s);
-//  assert("aaaa"s < "b"s); // But outside the max() we want our default behaviour back.
+  assert(::max("aaaa"s, "bb"s) == "aaaa"s);
+  assert(::max("aaaa"s, "bb"s, "veryLongString"s) == "veryLongString"s);
+  assert("aaaa"s < "b"s); // But outside the max() we want our default behaviour back.
 
   // Ex 2.1
   // Compute Fibonacci numbers.
