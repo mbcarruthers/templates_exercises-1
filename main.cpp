@@ -7,10 +7,21 @@ template<typename T>
 constexpr T max( T a , T b ) {
   return b < a ? a : b;
 }
+
 template<typename T , typename U>
 constexpr auto max( T a , U b) -> decltype(b < a ? a : b )
 {
     return b < a ? a : b;
+}
+
+template<typename T , typename... Types>
+ constexpr auto max( T t , T t2 , Types... types ) ->decltype(max(max(t,t2) , types...) ) {
+    return max( max(t,t2), types...);
+}
+
+template<typename T , typename U , typename... Types>
+ constexpr auto max( T t , U u , Types... types ) ->decltype( max(max(t , u ) , types...) ) {
+    return max(max(t , u ) , types...);
 }
 
 int main( void )  {
@@ -27,7 +38,7 @@ int main( void )  {
 
   // Ex. 1.2
   // Write max function that compares multiple values of different types.
-//  static_assert(::max(4, 5, 6, 7.6) == 7.6, "variadic templated max isn't working");
+  static_assert(::max(4, 5, 6, 7.6) == 7.6, "variadic templated max isn't working");
 //  static_assert(::max(4, 5, 6.f, 700.6, 234.34) == 700.6, "");
 
   // Ex. 1.3
