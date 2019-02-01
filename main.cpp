@@ -35,7 +35,7 @@ auto max( std::string const& a , std::string const& b ) {
 }
 
 template<typename T , typename U , typename... Types>
-std::string max( T t , U u , Types... types )  {
+std::string max( T const& t , U const& u , Types const&... types )  {
     return max( max( t , u) , types...);
 }
 
