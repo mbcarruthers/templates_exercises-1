@@ -39,6 +39,23 @@ std::string max( T t , U u , Types... types )  {
     return max( max( t , u) , types...);
 }
 
+template<int n> struct fib {
+    enum { value = fib<n - 1>::value + fib<n - 2>::value };
+};
+
+template<> struct fib<0> {
+    enum { value = 0 };
+};
+
+template<> struct fib<1> {
+    enum { value = 1 };
+};
+
+template<> struct fib<2> {
+    enum { value = 1 };
+};
+
+
 
 int main( void )  {
   using namespace std::string_literals;
@@ -65,11 +82,11 @@ int main( void )  {
 
   // Ex 2.1
   // Compute Fibonacci numbers.
-//  static_assert(fib<5>::value == 5, "");
-//  static_assert(fib<6>::value == 8, "");
-//  static_assert(fib<8>::value == 21, "");
-//  static_assert(fib<10>::value == 55, "");
-//  static_assert(fib<15>::value == 610, "");
+  static_assert(fib<5>::value == 5, "");
+  static_assert(fib<6>::value == 8, "");
+  static_assert(fib<8>::value == 21, "");
+  static_assert(fib<10>::value == 55, "");
+  static_assert(fib<15>::value == 610, "");
 
   // Ex. 2.2 - optional
   // Check if a number exists in Fibonacci series.
