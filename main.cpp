@@ -33,7 +33,7 @@ template<typename T , typename U , typename V , typename... Types>
 {
     return max( max(t , u , v) , types...);
 }
-// === exercise 1.1 end == 
+// === exercise 1.2 end == 
 
 // == exercise 1.3 begin === 
 auto max( std::string const& a , std::string const& b ) {
