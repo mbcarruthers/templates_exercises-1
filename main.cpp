@@ -3,6 +3,8 @@
 #include <iostream>
 // Implement your solutions here.
 
+
+// === exercise 1.1 begin === 
 template<typename T>
  inline constexpr T max( T a , T b ) {
   return b < a ? a : b;
@@ -13,7 +15,9 @@ template<typename T , typename U>
 {
     return b < a ? a : b;
 }
+// == exercise 1.1 end ===
 
+// exercise 1.2 begin ===
 template<typename T , typename... Types>
  constexpr auto max( T t , T t2 , Types... types ) -> decltype( max(max(t,t2) , types...) ) {
     return max( max(t,t2), types...);
@@ -29,7 +33,9 @@ template<typename T , typename U , typename V , typename... Types>
 {
     return max( max(t , u , v) , types...);
 }
+// === exercise 1.1 end == 
 
+// == exercise 1.3 begin === 
 auto max( std::string const& a , std::string const& b ) {
         return b.size() < a.size() ? a : b;
 }
@@ -38,7 +44,9 @@ template<typename T , typename U , typename... Types>
 std::string max( T const& t , U const& u , Types const&... types )  {
     return max( max( t , u) , types...);
 }
+// === exercise 1.3 end ===
 
+// === exercise 2.1 begin  ===
 template<int n> struct fib {
     enum { value = fib<n - 1>::value + fib<n - 2>::value };
 };
@@ -55,7 +63,7 @@ template<> struct fib<2> {
     enum { value = 1 };
 };
 
-
+// === exercise 2.1 end === 
 
 int main( void )  {
   using namespace std::string_literals;
