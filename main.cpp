@@ -6,12 +6,12 @@
 
 // === exercise 1.1 begin === 
 template<typename T>
- inline constexpr T max( T a , T b ) {
+constexpr T max( T a , T b ) {
   return b < a ? a : b;
 }
 
 template<typename T , typename U>
- constexpr auto max( T a , U b) -> decltype(b < a ? a : b )
+constexpr auto max( T a , U b) -> decltype(b < a ? a : b )
 {
     return b < a ? a : b;
 }
@@ -19,17 +19,17 @@ template<typename T , typename U>
 
 // exercise 1.2 begin ===
 template<typename T , typename... Types>
- constexpr auto max( T t , T t2 , Types... types ) -> decltype( max(max(t,t2) , types...) ) {
+ constexpr auto max( T t , T t2 , Types... types ) -> decltype( max( max(t , t2) , types...) ) {
     return max( max(t,t2), types...);
 }
 
 template<typename T , typename U , typename... Types>
- constexpr auto max( T t , U u , Types... types ) -> decltype( max(max(t , u) , types...) ) {
+constexpr auto max( T t , U u , Types... types ) -> decltype( max( max(t , u) , types...) ) {
     return max( max(t , u) , types... );
 }
 
 template<typename T , typename U , typename V , typename... Types>
- constexpr auto max( T t , U u , V v , Types... types ) -> decltype( max(max(t , u , v) , types...) )
+constexpr auto max( T t , U u , V v , Types... types ) -> decltype( max( max(t , u , v) , types...) )
 {
     return max( max(t , u , v) , types...);
 }
